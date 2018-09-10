@@ -1,5 +1,6 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -72,8 +73,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Login Correto!",Toast.LENGTH_SHORT).show();
-
+                    //chamar tela principal
+                    abrirTelaPrincipal();
                 }else{
                     String excecao = "";
                     try{
@@ -92,5 +93,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    //chamar tela principal
+    public void abrirTelaPrincipal(){
+        startActivity(new Intent(this, PrincipalActivity.class));
+        finish();
     }
 }
