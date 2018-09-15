@@ -24,6 +24,7 @@ public class MainActivity extends IntroActivity {
 
         verificarUsuarioLogado();
 
+
         //remover botões de navegação
         setButtonBackVisible(false);
         setButtonNextVisible(false);
@@ -63,6 +64,10 @@ public class MainActivity extends IntroActivity {
         }
     }
 
+    //deslogar usuario
+    public void SairLogin(){
+      autentificacao.signOut();
+    }
     //chamar tela principal
     public void abrirTelaPrincipal(){
         startActivity(new Intent(this, PrincipalActivity.class));

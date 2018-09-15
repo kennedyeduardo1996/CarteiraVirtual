@@ -2,5 +2,15 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#9400D3</color>
+
+    //cor despesas
+    <color name="colorPrimaryDespesa">#FF0000</color>
+    <color name="colorPrimaryDarkDespesa">#DF0101</color>
+    <color name="colorAccentDespesa">#ff706a</color>
+
+    //cor Renda
+    <color name="colorPrimaryRenda">#00FF00</color>
+    <color name="colorPrimaryDarkRenda">#04B404</color>
+    <color name="colorAccentRenda">#00D39E</color>
 </resources>
