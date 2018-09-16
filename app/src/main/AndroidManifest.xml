@@ -24,8 +24,16 @@
             android:name=".activity.PrincipalActivity"
             android:label="@string/title_activity_principal"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.DespesasActivity"  android:theme="@style/despesaTheme"/>
-        <activity android:name=".activity.RendasActivity" android:theme="@style/rendaTheme"></activity>
+        <activity
+            android:name=".activity.DespesasActivity"
+            android:theme="@style/despesaTheme" />
+        <activity
+            android:name=".activity.RendasActivity"
+            android:theme="@style/rendaTheme" />
+        <activity
+            android:name=".activity.OrcamentoActivity"
+            android:theme="@style/orcamentoTheme"
+            ></activity>
     </application>
 
 </manifest>
