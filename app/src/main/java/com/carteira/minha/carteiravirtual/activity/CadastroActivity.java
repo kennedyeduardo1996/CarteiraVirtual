@@ -84,9 +84,9 @@ public class CadastroActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()){
 
-//                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
-//                    usuario.setIdUsuario(idUsuario);
-//                    usuario.salvar();
+                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                    usuario.setIdUsuario(idUsuario);
+                    usuario.salvar();
                     finish();
 
                 }else{
