@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.carteira.minha.carteiravirtual.R;
 import com.carteira.minha.carteiravirtual.config.ConfiguracaoFirebase;
+import com.carteira.minha.carteiravirtual.helper.Base64Custom;
 import com.carteira.minha.carteiravirtual.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -80,8 +81,14 @@ public class CadastroActivity extends AppCompatActivity {
         ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()){
+
+//                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+//                    usuario.setIdUsuario(idUsuario);
+//                    usuario.salvar();
                     finish();
+
                 }else{
 
                     String excecao;

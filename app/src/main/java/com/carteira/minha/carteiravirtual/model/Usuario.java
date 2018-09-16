@@ -1,11 +1,28 @@
 package com.carteira.minha.carteiravirtual.model;
 
+import com.carteira.minha.carteiravirtual.config.ConfiguracaoFirebase;
+
+
+
 public class Usuario {
+    private String idUsuario;
     private String nome;
     private String email;
     private String senha;
 
     public Usuario() {
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    public void salvar(){
+        //DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
+
     }
 
     public String getNome() {
