@@ -40,6 +40,8 @@ public class PrincipalActivity extends AppCompatActivity {
         startActivity(new Intent(this, RendasActivity.class));
     }
 
-
+    public void adicionarOrcamento(View view){
+        startActivity(new Intent(this, OrcamentoActivity.class));
+    }
 
 }
