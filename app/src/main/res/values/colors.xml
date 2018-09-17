@@ -14,9 +14,5 @@
     <color name="colorPrimaryDarkRenda">#04B404</color>
     <color name="colorAccentRenda">#00D39E</color>
 
-    //cor Orçamento
-    <color name="colorPrimaryOrcamento">#FF7F00</color>
-    <color name="colorPrimaryDarkOrcamento">#FF7F00</color>
-    <color name="colorAccentOrcamento">#ff7f00</color>
 
 </resources>

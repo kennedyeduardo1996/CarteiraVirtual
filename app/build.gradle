@@ -43,6 +43,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.1'
     // dependencia para slider
     implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
+//    dependencia do menu flutuante
+    implementation 'com.github.clans:fab:1.6.4'
+
 }
 //add para o fire base
 apply plugin: 'com.google.gms.google-services'

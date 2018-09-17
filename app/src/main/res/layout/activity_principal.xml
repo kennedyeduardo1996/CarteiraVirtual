@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,39 +26,50 @@
 
 
 
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="10dp"
+        fab:menu_icon="@drawable/ic_games_black_24dp"
+        app:menu_colorNormal="@color/colorAccent"
+        app:menu_colorPressed="@color/colorPrimary"
+        >
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/menu_renda"
-            android:onClick="adicionarRenda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/colorPrimaryRenda"
-            android:layout_marginEnd="8dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_add"/>
-
-        <android.support.design.widget.FloatingActionButton
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_despesa"
             android:onClick="adicionarDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_remove"/>
+            android:src="@drawable/ic_remove"
+            fab:fab_colorNormal="@color/colorPrimaryDespesa"
+            fab:fab_label="Despesa"
+            fab:fab_size="mini"
+            />
 
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_renda"
+            android:onClick="adicionarRenda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            fab:fab_colorNormal="@color/colorPrimaryRenda"
+            fab:fab_label="Renda"
+            fab:fab_size="mini"
+            />
 
+         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_orcamento"
+            android:onClick="adicionarOrcamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_orcamento"
+            fab:fab_colorNormal="@color/colorPrimaryDarkOrcamento"
+            fab:fab_label="Orçamento"
+            fab:fab_size="mini"
+            />
 
-
-
+    </com.github.clans.fab.FloatingActionMenu>
 
 
 
