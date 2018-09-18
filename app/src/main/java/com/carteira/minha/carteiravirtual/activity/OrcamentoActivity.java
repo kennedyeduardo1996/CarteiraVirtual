@@ -11,8 +11,8 @@ import com.carteira.minha.carteiravirtual.model.Orcamento;
 
 public class OrcamentoActivity extends AppCompatActivity {
 
-    private TextInputEditText campoData, campoCategoria;
-    private EditText campoValor;
+//    private TextInputEditText campoData, campoCategoria;
+    private EditText campoValor, campoData, campoCategoria;
     private Orcamento orcamento;
 
     @Override
@@ -32,11 +32,14 @@ public class OrcamentoActivity extends AppCompatActivity {
 
         String data = campoData.getText().toString();
         Double valorRecuperado = Double.parseDouble(campoValor.getText().toString());
+
         orcamento.setValor( valorRecuperado );
         orcamento.setCategoria( campoCategoria.getText().toString() );
         orcamento.setData( data );
 
         orcamento.salvar( data );
+
+        finish();
 
     }
 }
