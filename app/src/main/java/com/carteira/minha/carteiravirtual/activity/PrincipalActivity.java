@@ -53,6 +53,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private AdapterMovimentacao adapterMovimentacao;
     private List<Movimentacao> movimentacoes = new ArrayList<>();
     private Movimentacao movimentacao;
+
     private DatabaseReference movimentacaoRef;
     private String mesAnoSelecionado;
 
@@ -72,19 +73,55 @@ public class PrincipalActivity extends AppCompatActivity {
         configuraCalendarView();
 
 
-        //Configurar adapter
+        //Configurar adapter para o recyclerview
         adapterMovimentacao = new AdapterMovimentacao(movimentacoes,this);
 
         //Configurar RecyclerView (lista da tela principal)
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setHasFixedSize(true);
-       // recyclerView.setAdapter( adapterMovimentacao );
+        recyclerView.setAdapter( adapterMovimentacao );
 
     }
 
 
+//    Recuperar dados d movimentaçoes banco para listar
 
+    public void recuperarMovimentacoes(){
+
+        String emailUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64( emailUsuario );
+        movimentacaoRef = firebaseRef.child("movimentacao")
+                .child( idUsuario )
+                .child( mesAnoSelecionado );
+
+        valueEventListenerMovimentacoes = movimentacaoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                movimentacoes.clear();
+
+                //recuperar todos os filhos do movimentações no banco
+                for (DataSnapshot dados: dataSnapshot.getChildren() ){
+
+                    Movimentacao movimentacao = dados.getValue( Movimentacao.class );
+                    movimentacao.setKey( dados.getKey() );
+//                    cria um array com as movimentações
+                    movimentacoes.add( movimentacao );
+
+                }
+//                notifica q os dados foram atualizados
+                adapterMovimentacao.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 
 //    Recuperar dados d banco para exibir
@@ -166,20 +203,22 @@ public class PrincipalActivity extends AppCompatActivity {
         CharSequence meses[] = {"Janeiro","Fevereiro", "Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
         calendarView.setTitleMonths( meses );
 
-//        CalendarDay dataAtual = calendarView.getCurrentDate();
-//        String mesSelecionado = String.format("%02d", (dataAtual.getMonth() + 1) );
-//        mesAnoSelecionado = String.valueOf( mesSelecionado + "" + dataAtual.getYear() );
-//
-//        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
-//            @Override
-//            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-//                String mesSelecionado = String.format("%02d", (date.getMonth() + 1) );
-//                mesAnoSelecionado = String.valueOf( mesSelecionado + "" + date.getYear() );
-//
-//                movimentacaoRef.removeEventListener( valueEventListenerMovimentacoes );
-//                recuperarMovimentacoes();
-//            }
-//        });
+
+//        pegando o mes atual do calendarView
+        CalendarDay dataAtual = calendarView.getCurrentDate();
+        String mesSelecionado = String.format("%02d", (dataAtual.getMonth() + 1) );
+        mesAnoSelecionado = String.valueOf( mesSelecionado + "" + dataAtual.getYear() );
+
+        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                String mesSelecionado = String.format("%02d", (date.getMonth() + 1) );
+                mesAnoSelecionado = String.valueOf( mesSelecionado + "" + date.getYear() );
+
+                movimentacaoRef.removeEventListener( valueEventListenerMovimentacoes );
+                recuperarMovimentacoes();
+            }
+        });
 
     }
 
@@ -197,7 +236,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         super.onStart();
         recuperarResumo();
-//        recuperarMovimentacoes();
+        recuperarMovimentacoes();
     }
 
 

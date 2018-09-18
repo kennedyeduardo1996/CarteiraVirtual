@@ -13,9 +13,7 @@ import com.carteira.minha.carteiravirtual.model.Movimentacao;
 
 import java.util.List;
 
-/**
- * Created by Jamilton Damasceno
- */
+
 
 public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentacao.MyViewHolder> {
 
@@ -46,7 +44,7 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
             holder.valor.setTextColor(context.getResources().getColor(R.color.colorPrimaryDarkDespesa));
             holder.valor.setText("-" + movimentacao.getValor());
         }else {
-            holder.valor.setTextColor(context.getResources().getColor(R.color.colorPrimaryDarkRenda));
+//            holder.valor.setTextColor(context.getResources().getColor(R.color.colorPrimaryDarkRenda));
         }
 
     }
