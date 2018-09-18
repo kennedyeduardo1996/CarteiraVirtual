@@ -14,6 +14,23 @@ public class Orcamento {
 
     public Orcamento() {    }
 
+    public void salvar(String dataEscolhida){
+        //        recuperando do banco o email
+        FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
+//        tranformando o email em id(base 64)
+        String idUsuario = Base64Custom.codificarBase64( autenticacao.getCurrentUser().getEmail() );
+
+        String datadigitada = DateCustom.DataEscolhida( dataEscolhida );
+
+        DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
+        firebase.child("orcamento")
+                .child( idUsuario )
+                .child( datadigitada )
+                .push()
+                .setValue(this);
+
+    }
+
     public String getData() { return data; }
 
     public void setData(String data) { this.data = data; }
@@ -28,20 +45,5 @@ public class Orcamento {
 
 
 
-    public void salvar(String dataEscolhida){
-        //        recuperando do banco o email
-        FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
-//        tranformando o email em id(base 64)
-        String idUsuario = Base64Custom.codificarBase64( autenticacao.getCurrentUser().getEmail() );
 
-        String datadigitada = DateCustom.DataEscolhida( dataEscolhida );
-
-        DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
-        firebase.child("movimentacao")
-                .child( idUsuario )
-                .child( datadigitada )
-                .push()
-                .setValue(this);
-
-    }
 }
