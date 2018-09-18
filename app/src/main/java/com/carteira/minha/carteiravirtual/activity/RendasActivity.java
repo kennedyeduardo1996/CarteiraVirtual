@@ -27,7 +27,7 @@ public class RendasActivity extends AppCompatActivity {
     private Movimentacao movimentacao;
     private DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
     private FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
-    private Double receitaTotal;
+    private Double rendaTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class RendasActivity extends AppCompatActivity {
             movimentacao.setData( data );
             movimentacao.setTipo( "renda" );
 
-            Double rendaAtualizada = receitaTotal + valorRecuperado;
+            Double rendaAtualizada = rendaTotal + valorRecuperado;
             atualizarRenda( rendaAtualizada );
 
             movimentacao.salvar( data );
@@ -123,7 +123,7 @@ public class RendasActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue( Usuario.class );
-                receitaTotal = usuario.getRendaTotal();
+                rendaTotal = usuario.getRendaTotal();
             }
 
             @Override
@@ -140,7 +140,7 @@ public class RendasActivity extends AppCompatActivity {
         String idUsuario = Base64Custom.codificarBase64( emailUsuario );
         DatabaseReference usuarioRef = firebaseRef.child("usuarios").child( idUsuario );
 
-        usuarioRef.child("receitaTotal").setValue(renda);
+        usuarioRef.child("rendaTotal").setValue(renda);
 
     }
 

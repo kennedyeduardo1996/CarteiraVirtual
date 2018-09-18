@@ -56,12 +56,11 @@ public class MainActivity extends IntroActivity {
 
     //função para verificar se o usuario está logado
     public  void verificarUsuarioLogado(){
-
         autentificacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
-
 
         if (autentificacao.getCurrentUser() != null){
             abrirTelaPrincipal();
+
         }
     }
 
