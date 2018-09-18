@@ -35,8 +35,8 @@
             android:theme="@style/rendaTheme" />
         <activity
             android:name=".activity.OrcamentoActivity"
-            android:theme="@style/orcamentoTheme"
-            ></activity>
+            android:theme="@style/orcamentoTheme" />
+        <activity android:name=".activity.ListaCategoriaDespesaActivity"></activity>
     </application>
 
 </manifest>
