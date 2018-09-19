@@ -1,18 +1,22 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carteira.minha.carteiravirtual.adpter.AdapterMovimentacao;
 import com.carteira.minha.carteiravirtual.config.ConfiguracaoFirebase;
@@ -71,6 +75,7 @@ public class PrincipalActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
         recyclerView = findViewById(R.id.recyclerMovimentos);
         configuraCalendarView();
+        swipe();
 
 
         //Configurar adapter para o recyclerview
@@ -104,7 +109,10 @@ public class PrincipalActivity extends AppCompatActivity {
                 //recuperar todos os filhos do movimentações no banco
                 for (DataSnapshot dados: dataSnapshot.getChildren() ){
 
+
+
                     Movimentacao movimentacao = dados.getValue( Movimentacao.class );
+//                    pegando a chave da movimentacao (id)
                     movimentacao.setKey( dados.getKey() );
 //                    cria um array com as movimentações
                     movimentacoes.add( movimentacao );
@@ -124,7 +132,102 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
 
-//    Recuperar dados d banco para exibir
+    // arrastar os itens da lista para poder excluir
+    public void swipe(){
+
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+
+                //desativa o movimento para cima e baixo
+                int dragFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+                return makeMovementFlags(dragFlags, swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+               excluirMovimentacao( viewHolder );
+            }
+        };
+
+        new ItemTouchHelper( itemTouch ).attachToRecyclerView( recyclerView );
+
+    }
+
+
+    public void excluirMovimentacao(final RecyclerView.ViewHolder viewHolder){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        //Configura AlertDialog
+        alertDialog.setTitle("Excluir Movimentação da Conta");
+        alertDialog.setMessage("Você tem certeza que deseja realmente excluir essa movimentação de sua conta?");
+        alertDialog.setCancelable(false);
+
+        //caso aceite a exclusão
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int position = viewHolder.getAdapterPosition();
+                movimentacao = movimentacoes.get( position );
+
+                String emailUsuario = autenticacao.getCurrentUser().getEmail();
+                String idUsuario = Base64Custom.codificarBase64( emailUsuario );
+                movimentacaoRef = firebaseRef.child("movimentacao")
+                        .child( idUsuario )
+                        .child( mesAnoSelecionado );
+
+                movimentacaoRef.child( movimentacao.getKey() ).removeValue();
+                adapterMovimentacao.notifyItemRemoved( position );
+                atualizarSaldo();
+
+            }
+        });
+        //caso negue a exclusão
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(PrincipalActivity.this,
+                        "Cancelado",
+                        Toast.LENGTH_SHORT).show();
+                adapterMovimentacao.notifyDataSetChanged();
+            }
+        });
+
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+    }
+
+    //atualiza o total da carteira
+    public void atualizarSaldo(){
+
+        String emailUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64( emailUsuario );
+        usuarioRef = firebaseRef.child("usuarios").child( idUsuario );
+
+        if ( movimentacao.getTipo().equals("renda") ){
+            rendaTotal = rendaTotal - movimentacao.getValor();
+            usuarioRef.child("rendaTotal").setValue(rendaTotal);
+        }
+
+        if ( movimentacao.getTipo().equals("despesa") ){
+            despesaTotal = despesaTotal - movimentacao.getValor();
+            usuarioRef.child("despesaTotal").setValue( despesaTotal );
+        }
+
+    }
+
+
+
+
+    //    Recuperar dados d banco para exibir
     public void recuperarResumo(){
 
         //        recuperando do banco o email do usuario
@@ -215,7 +318,9 @@ public class PrincipalActivity extends AppCompatActivity {
                 String mesSelecionado = String.format("%02d", (date.getMonth() + 1) );
                 mesAnoSelecionado = String.valueOf( mesSelecionado + "" + date.getYear() );
 
+                //remover o evento da movimentação antes do proximo mes
                 movimentacaoRef.removeEventListener( valueEventListenerMovimentacoes );
+                //quando o usuario mudar o mes irá sempre recuperar as movimentações
                 recuperarMovimentacoes();
             }
         });
