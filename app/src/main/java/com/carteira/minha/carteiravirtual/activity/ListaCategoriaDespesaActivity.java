@@ -52,7 +52,8 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
 
     public void recuperaCategoriaDespesa() {
 
-        categoriaDespesaRef = firebaseRef.child("despesa");
+        categoriaDespesaRef = firebaseRef.child("categoria")
+                                         .child("despesa");
 
         valueEventListenerCategoriaDespesa = categoriaDespesaRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,7 +75,6 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop () {
         super.onStop();
         categoriaDespesaRef.removeEventListener(valueEventListenerCategoriaDespesa);
     }

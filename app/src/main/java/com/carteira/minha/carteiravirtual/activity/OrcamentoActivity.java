@@ -1,5 +1,6 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,5 +42,9 @@ public class OrcamentoActivity extends AppCompatActivity {
 
         finish();
 
+    }
+
+    public void listaCategoriaDespesa(View view){
+        startActivity(new Intent(this, ListaCategoriaDespesaActivity.class));
     }
 }
