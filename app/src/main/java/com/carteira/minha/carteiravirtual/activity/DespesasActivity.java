@@ -1,9 +1,12 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.app.DatePickerDialog;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,8 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.carteira.minha.carteiravirtual.config.ConfiguracaoFirebase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 
-public class DespesasActivity extends AppCompatActivity {
+
+public class DespesasActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private TextInputEditText campoData, campoCategoria, campoDescricao;
     private EditText campoValor;
     private Movimentacao movimentacao;
@@ -48,6 +53,33 @@ public class DespesasActivity extends AppCompatActivity {
 
 //        busca a despesas total e salva numa var
         recuperarDespesaTotal();
+
+        campoData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFreagment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+            }
+        });
+    }
+
+    //passar a data pelo calendario
+
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        int ano = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH);
+        int dia = c.get(Calendar.DAY_OF_MONTH);
+
+        String dataselecionada = (dia < 10 ? "0" + dia : dia) + "/" + ((mes+1) < 10 ? "0" + (mes+1) : (mes+1)) +"/" + ano;
+        campoData.setText( dataselecionada );
+
     }
 
     public void salvarDespesa(View view){
