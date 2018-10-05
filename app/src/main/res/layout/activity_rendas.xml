@@ -67,7 +67,8 @@
             android:id="@+id/editCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ex: salário" />
+            android:hint="ex: salário"
+            android:onClick="listaCategoriaRenda" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

@@ -22,10 +22,7 @@
         <activity android:name=".activity.CadastroActivity" />
         <activity
             android:name=".activity.PrincipalActivity"
-
-
             android:label="@string/title_activity_principal"
-
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.DespesasActivity"
@@ -36,7 +33,10 @@
         <activity
             android:name=".activity.OrcamentoActivity"
             android:theme="@style/orcamentoTheme" />
-        <activity android:name=".activity.ListaCategoriaDespesaActivity"></activity>
+        <activity android:name=".activity.ListaCategoriaDespesaActivity" />
+        <activity
+            android:name=".activity.ListaCategoriaRendaActivity"
+            android:label="@string/title_activity_lista_categoria_renda"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -142,6 +143,10 @@ public class RendasActivity extends AppCompatActivity {
 
         usuarioRef.child("rendaTotal").setValue(renda);
 
+    }
+
+    public void listaCategoriaRenda(View view) {
+        startActivity(new Intent(this, ListaCategoriaRendaActivity.class));
     }
 
 }

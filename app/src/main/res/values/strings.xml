@@ -4,4 +4,5 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_despesas">DespesasActivity</string>
     <string name="title_activity_rendas">RendasActivity</string>
+    <string name="title_activity_lista_categoria_renda">ListaCategoriaRendaActivity</string>
 </resources>
