@@ -47,9 +47,11 @@ dependencies {
 //    dependencia do menu flutuante
     implementation 'com.github.clans:fab:1.6.4'
 
-//    calendario
+    //    calendario
+
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation 'com.android.support:cardview-v7:27.0.2'
+
 
 }
 //add para o fire base

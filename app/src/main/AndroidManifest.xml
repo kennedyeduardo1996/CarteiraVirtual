@@ -36,7 +36,7 @@
         <activity android:name=".activity.ListaCategoriaDespesaActivity" />
         <activity
             android:name=".activity.ListaCategoriaRendaActivity"
-            android:label="@string/title_activity_lista_categoria_renda"></activity>
+            android:label="@string/title_activity_lista_categoria_renda" />
     </application>
 
 </manifest>

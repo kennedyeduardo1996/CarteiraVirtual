@@ -59,14 +59,10 @@ public class RendasActivity extends AppCompatActivity {
             movimentacao.setDescricao( campoDescricao.getText().toString() );
             movimentacao.setData( data );
             movimentacao.setTipo( "renda" );
-
             Double rendaAtualizada = rendaTotal + valorRecuperado;
             atualizarRenda( rendaAtualizada );
-
             movimentacao.salvar( data );
-
             finish();
-
         }
 
 
@@ -111,7 +107,6 @@ public class RendasActivity extends AppCompatActivity {
 
 
     }
-
 
 
     public void recuperarRendaTotal(){

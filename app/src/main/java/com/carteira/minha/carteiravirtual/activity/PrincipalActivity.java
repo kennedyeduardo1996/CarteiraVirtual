@@ -286,8 +286,9 @@ public class PrincipalActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menuSair :
                 autenticacao.signOut();
-                startActivity(new Intent(this, CadastroActivity.class));
+                setContentView(R.layout.intro_cadastro);
                 finish();
+                break;
             case R.id.menuCategoria :
                 startActivity(new Intent(this, ListaCategoriaDespesaActivity.class));
                 finish();

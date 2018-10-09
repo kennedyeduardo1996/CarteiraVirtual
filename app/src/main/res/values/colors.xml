@@ -5,14 +5,14 @@
     <color name="colorAccent">#9400D3</color>
 
     //cor despesas
-    <color name="colorPrimaryDespesa">#FF0000</color>
-    <color name="colorPrimaryDarkDespesa">#DF0101</color>
-    <color name="colorAccentDespesa">#ff706a</color>
+    <color name="colorPrimaryDespesa">#F44336</color>
+    <color name="colorPrimaryDarkDespesa">#D32F2F</color>
+    <color name="colorAccentDespesa">#FF5252</color>
 
     //cor Renda
-    <color name="colorPrimaryRenda">#00FF00</color>
-    <color name="colorPrimaryDarkRenda">#04B404</color>
-    <color name="colorAccentRenda">#00D39E</color>
+    <color name="colorPrimaryRenda">#4CAF50</color>
+    <color name="colorPrimaryDarkRenda">#388E3C</color>
+    <color name="colorAccentRenda">#4CAF50</color>
 
     //cor Orçamento
     <color name="colorPrimaryOrcamento">#FF7F00</color>
