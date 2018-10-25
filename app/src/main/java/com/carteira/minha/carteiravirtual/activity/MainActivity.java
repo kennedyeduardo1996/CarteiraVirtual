@@ -70,7 +70,7 @@ public class MainActivity extends IntroActivity {
     }
     //chamar tela principal
     public void abrirTelaPrincipal(){
-        startActivity(new Intent(this, PrincipalActivity.class));
+        startActivity(new Intent(this, NovoPrincipal.class));
     }
 
 }

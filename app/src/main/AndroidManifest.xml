@@ -37,6 +37,7 @@
         <activity
             android:name=".activity.ListaCategoriaRendaActivity"
             android:label="@string/title_activity_lista_categoria_renda" />
+        <activity android:name=".activity.NovoPrincipal"></activity>
     </application>
 
 </manifest>

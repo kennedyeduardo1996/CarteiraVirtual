@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //chamar tela principal
     public void abrirTelaPrincipal(){
-        startActivity(new Intent(this, PrincipalActivity.class));
+        startActivity(new Intent(this, NovoPrincipal.class));
         finish();
     }
 }
