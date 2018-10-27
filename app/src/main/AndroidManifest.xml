@@ -30,15 +30,16 @@
         <activity
             android:name=".activity.RendasActivity"
             android:theme="@style/rendaTheme" />
-        <activity
-            android:name=".activity.OrcamentoActivity"
-             />
+        <activity android:name=".activity.OrcamentoActivity" />
         <activity android:name=".activity.ListaCategoriaDespesaActivity" />
         <activity
             android:name=".activity.ListaCategoriaRendaActivity"
             android:label="@string/title_activity_lista_categoria_renda" />
-        <activity android:name=".activity.NovoPrincipal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.NovoPrincipal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.ConfiguracoesActivity" />
+        <activity android:name=".activity.EditarActivity"></activity>
     </application>
 
 </manifest>

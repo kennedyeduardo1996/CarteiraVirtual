@@ -36,6 +36,13 @@ public class NovoPrincipal extends AppCompatActivity {
     }
 
 
+    public void abrirConfiguracoes(View view){
+        startActivity(new Intent(this, ConfiguracoesActivity.class));
+    }
+
+
+
+
     //    para poder exibir o menu do lado de cima
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,6 +69,7 @@ public class NovoPrincipal extends AppCompatActivity {
             case R.id.menuCategoria : {
                 startActivity(new Intent(this, ListaCategoriaDespesaActivity.class));
                 finish();
+                break;
             }
 
         }

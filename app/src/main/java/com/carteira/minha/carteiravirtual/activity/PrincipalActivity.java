@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +88,9 @@ public class PrincipalActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter( adapterMovimentacao );
 
+
+
+
     }
 
 
@@ -100,7 +104,38 @@ public class PrincipalActivity extends AppCompatActivity {
                 .child( idUsuario )
                 .child( mesAnoSelecionado );
 
+
+        //        listagem para evento de click
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Item precionado" + view,
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
+
         valueEventListenerMovimentacoes = movimentacaoRef.addValueEventListener(new ValueEventListener() {
+
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -123,6 +158,10 @@ public class PrincipalActivity extends AppCompatActivity {
 
             }
 
+
+
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -130,6 +169,7 @@ public class PrincipalActivity extends AppCompatActivity {
         });
 
     }
+
 
 
     // arrastar os itens da lista para poder excluir
@@ -159,6 +199,9 @@ public class PrincipalActivity extends AppCompatActivity {
         new ItemTouchHelper( itemTouch ).attachToRecyclerView( recyclerView );
 
     }
+
+
+
 
 
     public void excluirMovimentacao(final RecyclerView.ViewHolder viewHolder){
@@ -295,6 +338,7 @@ public class PrincipalActivity extends AppCompatActivity {
             case R.id.menuCategoria : {
                 startActivity(new Intent(this, ListaCategoriaDespesaActivity.class));
                 finish();
+                break;
             }
 
         }
