@@ -280,22 +280,28 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
 
-//responsavel por tratar os item do manu superior
+
+    //responsavel por tratar os item do manu superior
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menuSair :
+            case R.id.menuSair : {
                 autenticacao.signOut();
-                setContentView(R.layout.intro_cadastro);
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
                 break;
-            case R.id.menuCategoria :
+            }
+
+            case R.id.menuCategoria : {
                 startActivity(new Intent(this, ListaCategoriaDespesaActivity.class));
                 finish();
-                break;
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 

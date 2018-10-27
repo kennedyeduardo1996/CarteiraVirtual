@@ -28,15 +28,7 @@
         <item name="colorAccent">@color/colorAccentRenda</item>
     </style>
 
-    <!-- Aplicando tema nas renda -->
-    <style name="orcamentoTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimaryOrcamento</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkOrcamento</item>
-        <item name="colorAccent">@color/colorAccentOrcamento</item>
-    </style>
 
 
     <style name="AppTheme.NoActionBar">

@@ -39,7 +39,6 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_categoria_despesa);
 
-
         //configurar adapter
         adapterCategoriaDespesa = new AdapterCategoriaDespesa(categoriaDespesas, this);
 

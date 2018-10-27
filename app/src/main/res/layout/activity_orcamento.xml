@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="@color/colorAccentOrcamento"
+
         android:gravity="center"
         android:orientation="vertical"
         android:padding="10dp"
@@ -50,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -63,7 +63,6 @@
         android:layout_marginStart="8dp"
         android:clickable="true"
         android:onClick="salvarOrcamento"
-        app:backgroundTint="@color/colorAccentOrcamento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
