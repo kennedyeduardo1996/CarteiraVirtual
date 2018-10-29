@@ -34,6 +34,8 @@ public class Movimentacao {
                 .child( mesAno )
                 .push()
                 .setValue(this);
+        firebase.keepSynced(true);
+
 
     }
 

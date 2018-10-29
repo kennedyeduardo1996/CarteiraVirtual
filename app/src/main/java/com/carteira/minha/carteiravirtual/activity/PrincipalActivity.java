@@ -49,6 +49,7 @@ public class PrincipalActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
     private DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
 
+
 //    variaveis para para a atualização do banco quando não estiver usando
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
@@ -88,8 +89,9 @@ public class PrincipalActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter( adapterMovimentacao );
 
-
-
+//        linha para manter os dados atualizados offline
+//        firebaseRef.keepSynced(true);
+//        usuarioRef.keepSynced(true);
 
     }
 
@@ -103,6 +105,7 @@ public class PrincipalActivity extends AppCompatActivity {
         movimentacaoRef = firebaseRef.child("movimentacao")
                 .child( idUsuario )
                 .child( mesAnoSelecionado );
+
 
 
         //        listagem para evento de click

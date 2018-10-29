@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".config.FirebaseOffline">
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.Intro">
@@ -29,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.RendasActivity"
-            android:theme="@style/rendaTheme" />
+             />
         <activity android:name=".activity.OrcamentoActivity" />
         <activity android:name=".activity.ListaCategoriaDespesaActivity" />
         <activity
@@ -39,7 +40,6 @@
             android:name=".activity.NovoPrincipal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ConfiguracoesActivity" />
-        <activity android:name=".activity.EditarActivity"></activity>
     </application>
 
 </manifest>

@@ -109,7 +109,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
-        fab:fab_colorNormal="@color/colorPrimaryDespesa"
+        fab:fab_colorNormal="@color/colorPrimary"
         android:onClick="salvarDespesa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

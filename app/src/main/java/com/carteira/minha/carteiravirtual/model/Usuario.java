@@ -60,6 +60,7 @@ public class Usuario {
         firebase.child("usuarios")
                 .child( this.idUsuario )
                 .setValue( this );
+        firebase.keepSynced(true);
 
     }
 }
