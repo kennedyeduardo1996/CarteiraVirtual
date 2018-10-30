@@ -31,7 +31,8 @@
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton3"
         app:layout_constraintStart_toStartOf="@+id/floatingActionButton3"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton2"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        tools:ignore="VectorDrawableCompat" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton3"
@@ -60,7 +61,7 @@
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton6"
         app:layout_constraintStart_toStartOf="@+id/floatingActionButton6"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_mov" />
 
     <TextView
         android:id="@+id/textView9"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> </string>
+    <string name="app_name">Carteira Virtual</string>
     <string name="title_activity_principal"> </string>
     <string name="title_activity_main2"> </string>
     <string name="title_activity_despesas"> </string>

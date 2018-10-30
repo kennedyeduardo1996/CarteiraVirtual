@@ -37,40 +37,22 @@
         app:menu_colorPressed="@color/colorPrimary"
         >
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_renda"
-            android:onClick="adicionarRenda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            fab:fab_colorNormal="@color/colorPrimaryRenda"
-            fab:fab_label="Renda"
-            fab:fab_size="mini"
-            />
+
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_despesa"
             android:onClick="adicionarDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_remove"
-            fab:fab_colorNormal="@color/colorPrimaryDespesa"
-            fab:fab_label="Despesa"
+            android:src="@drawable/ic_mov24dp"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_label="Movimentação"
             fab:fab_size="mini"
             />
 
 
 
-         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_orcamento"
-            android:onClick="adicionarOrcamento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_orcamento"
 
-            fab:fab_label="Orçamento"
-            fab:fab_size="mini"
-            />
 
     </com.github.clans.fab.FloatingActionMenu>
 
