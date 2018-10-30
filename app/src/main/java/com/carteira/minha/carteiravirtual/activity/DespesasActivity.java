@@ -41,9 +41,6 @@ public class DespesasActivity extends AppCompatActivity implements DatePickerDia
 
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +64,14 @@ public class DespesasActivity extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFreagment();
                 datePicker.show(getSupportFragmentManager(), "date picker");
+
+
             }
         });
+
+        Intent incomingIntent = getIntent();
+        String categoria = incomingIntent.getStringExtra("categoria");
+        campoDescricao.setText(categoria);
     }
 
     //passar a data pelo calendario

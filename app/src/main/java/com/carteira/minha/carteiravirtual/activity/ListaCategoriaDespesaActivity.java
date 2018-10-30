@@ -1,11 +1,16 @@
 package com.carteira.minha.carteiravirtual.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +52,38 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterCategoriaDespesa);
+
+        //evento click
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                CategoriaDespesa categoria = categoriaDespesas.get(position);
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                         categoria.getNome(),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                Intent intent = new Intent(ListaCategoriaDespesaActivity.this, DespesasActivity.class);
+                                intent.putExtra("categoria", categoria.getNome());
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
     }
 
     public void recuperaCategoriaDespesa() {
@@ -75,6 +112,9 @@ public class ListaCategoriaDespesaActivity extends AppCompatActivity {
         });
 
     }
+
+
+
 
     @Override
     protected void onStart () {
