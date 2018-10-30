@@ -40,6 +40,14 @@
             android:text="saldo geral"
             android:textAlignment="center"
             android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"

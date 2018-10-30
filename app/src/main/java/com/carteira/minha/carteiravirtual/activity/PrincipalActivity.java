@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.carteira.minha.carteiravirtual.adpter.AdapterMovimentacao;
 import com.carteira.minha.carteiravirtual.config.ConfiguracaoFirebase;
 import com.carteira.minha.carteiravirtual.R;
+import com.carteira.minha.carteiravirtual.model.Notificacao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,10 +42,13 @@ import java.util.List;
 public class PrincipalActivity extends AppCompatActivity {
 
     private MaterialCalendarView calendarView;
-    private TextView textoSaudacao, textoSaldo;
+    private TextView textoSaudacao, textoSaldo,textoNotification;
     private Double despesaTotal = 0.0;
     private Double rendaTotal = 0.0;
     private Double resumoUsuario = 0.0;
+    private Double resumoUsuario2 = 0.0;
+    private Double valorNotificacao = 0.0;
+    private Double valorNotRecuperado = 0.0;
 
     private FirebaseAuth autenticacao = ConfiguracaoFirebase.getFirebaseAutentificacao();
     private DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebaseDatabase();
@@ -52,16 +56,21 @@ public class PrincipalActivity extends AppCompatActivity {
 
 //    variaveis para para a atualização do banco quando não estiver usando
     private DatabaseReference usuarioRef;
+    private DatabaseReference usuarioRef2;
     private ValueEventListener valueEventListenerUsuario;
+    private ValueEventListener valueEventListenerUsuario2;
     private ValueEventListener valueEventListenerMovimentacoes;
 
     private RecyclerView recyclerView;
     private AdapterMovimentacao adapterMovimentacao;
     private List<Movimentacao> movimentacoes = new ArrayList<>();
     private Movimentacao movimentacao;
+    private Notificacao notificacao;
 
     private DatabaseReference movimentacaoRef;
     private String mesAnoSelecionado;
+
+    private ConfiguracoesActivity configuracoesActivity;
 
 
     @Override
@@ -74,6 +83,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         textoSaldo = findViewById(R.id.textSaldo);
         textoSaudacao = findViewById(R.id.textSaudacao);
+        textoNotification = findViewById(R.id.textNotification);
         calendarView = findViewById(R.id.calendarView);
         recyclerView = findViewById(R.id.recyclerMovimentos);
         configuraCalendarView();
@@ -276,11 +286,17 @@ public class PrincipalActivity extends AppCompatActivity {
     //    Recuperar dados d banco para exibir
     public void recuperarResumo(){
 
+
         //        recuperando do banco o email do usuario
         String emailUsuario = autenticacao.getCurrentUser().getEmail();
 //        convertendo o email para idusuario
         String idUsuario = Base64Custom.codificarBase64( emailUsuario );
+
         usuarioRef = firebaseRef.child("usuarios").child( idUsuario );
+
+        usuarioRef2 = firebaseRef.child("notificacao").child( idUsuario );
+
+
 
         valueEventListenerUsuario = usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -301,6 +317,146 @@ public class PrincipalActivity extends AppCompatActivity {
                 textoSaudacao.setText(  usuario.getNome() +", seu saldo atual é" );
                 textoSaldo.setText( "R$ " + resultadoFormatado );
 
+
+
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+
+
+                valueEventListenerUsuario2 = usuarioRef2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                retorna objeto usuario
+                        Notificacao notificacao = dataSnapshot.getValue( Notificacao.class );
+
+                        final Double valorNotRecuperado = notificacao.getValor();
+
+
+//                formatando numero para a exibição
+                        DecimalFormat decimalFormat = new DecimalFormat("");
+                        String resultadoFormatado = decimalFormat.format( valorNotRecuperado );
+
+
+//                        Notificacao notificacao = new Notificacao();
+                        valorNotificacao = notificacao.getValor();
+
+
+//
+                DecimalFormat decimalFormat2 = new DecimalFormat("");
+                String valorTotal = decimalFormat2.format( resumoUsuario );
+                String ValorNoti = decimalFormat2.format( valorNotificacao );
+
+
+                if((Double.parseDouble(valorTotal ) == Double.parseDouble( ValorNoti))&&  (notificacao.isCheck())   ){
+                    //                formatando numero para a exibição
+                    DecimalFormat decimalFormat3 = new DecimalFormat("###,###,###,##0.00");
+                    String limite = decimalFormat3.format( valorNotificacao );
+                    textoNotification.setText("Você atinguiu seu limite: " + limite );
+                }else  if((Double.parseDouble(valorTotal ) < Double.parseDouble( ValorNoti)) && (notificacao.isCheck())  ){
+                    //                formatando numero para a exibição
+                    DecimalFormat decimalFormat3 = new DecimalFormat("###,###,###,##0.00");
+                    String limite = decimalFormat3.format( valorNotificacao );
+                    textoNotification.setText("Você ultrapassou seu limite: " + limite );
+                }
+                if(Double.parseDouble(valorTotal ) > Double.parseDouble( ValorNoti)){
+                    textoNotification.setText("");
+
+                }
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+//       *********************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                Notificacao notificacao = new Notificacao();
+//                valorNotificacao = notificacao.getValor();
+//                    textoNotification.setText("Você atinguiu seu limite: "+ valorNotificacao);
+//
+//
+//
+//                DecimalFormat decimalFormat2 = new DecimalFormat("");
+//                String valorTotal = decimalFormat2.format( resumoUsuario );
+//                String ValorNoti = decimalFormat2.format( valorNotificacao );
+//
+//
+//                if(Double.parseDouble(valorTotal ) < Double.parseDouble( ValorNoti)){
+//                    textoNotification.setText("Você atinguiu seu limite: " );
+//                }
+//                if(Double.parseDouble(valorTotal ) > Double.parseDouble( ValorNoti)){
+//                    textoNotification.setText("aaaa ");
+//
+//                }
+
+
+//       *********************************************************************************
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+    public void recuperarNotificacao(){
+
+
+//        recuperando do banco o email do usuario
+        String emailUsuario = autenticacao.getCurrentUser().getEmail();
+//        convertendo o email para idusuario
+        String idUsuario = Base64Custom.codificarBase64( emailUsuario );
+
+        usuarioRef = firebaseRef.child("notificacao").child( idUsuario );
+
+        valueEventListenerUsuario = usuarioRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                retorna objeto usuario
+                Notificacao notificacao = dataSnapshot.getValue( Notificacao.class );
+
+                valorNotRecuperado = notificacao.getValor();
+
+
+//                formatando numero para a exibição
+                DecimalFormat decimalFormat = new DecimalFormat("");
+                String resultadoFormatado = decimalFormat.format( valorNotRecuperado );
+
+                textoNotification.setText("Você atinguiu seu limite: "+ valorNotRecuperado);
             }
 
             @Override
@@ -310,10 +466,6 @@ public class PrincipalActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
 
 //    para poder exibir o menu do lado de cima
     @Override
