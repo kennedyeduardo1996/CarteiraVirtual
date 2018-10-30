@@ -71,7 +71,7 @@ public class DespesasActivity extends AppCompatActivity implements DatePickerDia
 
         Intent incomingIntent = getIntent();
         String categoria = incomingIntent.getStringExtra("categoria");
-        campoDescricao.setText(categoria);
+        campoCategoria.setText(categoria);
     }
 
     //passar a data pelo calendario

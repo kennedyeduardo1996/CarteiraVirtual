@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">carteiraVirtual</string>
-    <string name="title_activity_principal">Carteira</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_despesas">DespesasActivity</string>
-    <string name="title_activity_rendas">RendasActivity</string>
-    <string name="title_activity_lista_categoria_renda">ListaCategoriaRendaActivity</string>
+    <string name="app_name"> </string>
+    <string name="title_activity_principal"> </string>
+    <string name="title_activity_main2"> </string>
+    <string name="title_activity_despesas"> </string>
+    <string name="title_activity_rendas"> </string>
+    <string name="title_activity_lista_categoria_renda"> </string>
 </resources>
