@@ -134,14 +134,15 @@ public class DespesasActivity extends AppCompatActivity implements DatePickerDia
             if ( !textoValor.isEmpty() ){
                 if ( !textoData.isEmpty() ){
                     if ( !textoCategoria.isEmpty() ){
-                        if ( !textoDescricao.isEmpty() ){
+                        return true;
+                        /*if ( !textoDescricao.isEmpty() ){
                             return true;
                         }else {
                             Toast.makeText(DespesasActivity.this,
                                     "Descrição não foi preenchida!",
                                     Toast.LENGTH_SHORT).show();
                             return false;
-                        }
+                        }*/
                     }else {
                         Toast.makeText(DespesasActivity.this,
                                 "Categoria não foi preenchida!",

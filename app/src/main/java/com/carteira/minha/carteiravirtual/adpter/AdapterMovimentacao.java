@@ -41,9 +41,9 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###,##0.00");
         String resultadoFormatado = decimalFormat.format( movimentacao.getValor() );
 
-        holder.titulo.setText(movimentacao.getDescricao());
+        holder.titulo.setText(movimentacao.getCategoria());
         holder.valor.setText("R$ "+resultadoFormatado);
-        holder.categoria.setText(movimentacao.getCategoria());
+        holder.categoria.setText(movimentacao.getDescricao());
 
         if (movimentacao.getTipo().equals("despesa")) {
             holder.valor.setTextColor(context.getResources().getColor(R.color.colorPrimaryDarkDespesa));
